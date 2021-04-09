@@ -23,7 +23,7 @@ public class InventoryDaoImpl implements InventoryDao {
 	public List<Inventory> findAll() throws Exception {
 		List<Inventory> inventoryList = new ArrayList<>();
 		try(Connection con = ds.getConnection()){
-			String sql = "SELECT DISTINCT * FROM inventory_item JOIN suppliers ON inventory_item.supplier_id = suppliers.id JOIN item ON inventory_item.item_id = item.id ORDER BY inventory_item.id ASC";
+			String sql = "SELECT DISTINCT * FROM inventory JOIN suppliers ON inventory.supplier_id = suppliers.id JOIN item ON inventory.item_id = item.id ORDER BY inventory.id ASC";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
@@ -74,7 +74,7 @@ public class InventoryDaoImpl implements InventoryDao {
 	public Inventory findById(Integer id) throws Exception {
 		Inventory inventory = null;
 		try(Connection con = ds.getConnection()){
-			String sql = "SELECT * FROM inventory_item JOIN suppliers ON inventory_item.supplier_id = suppliers.id JOIN item ON inventory_item.item_id = item.id WHERE inventory_item.id = ?";
+			String sql = "SELECT * FROM inventory JOIN suppliers ON inventory.supplier_id = suppliers.id JOIN item ON inventory.item_id = item.id WHERE inventory.id = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
@@ -90,7 +90,7 @@ public class InventoryDaoImpl implements InventoryDao {
 	@Override
 	public void insert(Inventory inventory) throws Exception {
 		try(Connection con = ds.getConnection()){
-			String sql = "INSERT INTO inventory_item(supplier_id, item_id, price, quantity, memo, created)VALUES(?, ?, ?, ?, ?, NOW())";
+			String sql = "INSERT INTO inventory(supplier_id, item_id, price, quantity, memo, created)VALUES(?, ?, ?, ?, ?, NOW())";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setObject(1, inventory.getSupplierId(),Types.INTEGER);
 			stmt.setObject(2, inventory.getItemId(),Types.INTEGER);
@@ -106,7 +106,7 @@ public class InventoryDaoImpl implements InventoryDao {
 	@Override
 	public void update(Inventory inventory) throws Exception {
 		try(Connection con = ds.getConnection()){
-			String sql = "UPDATE inventory_item SET supplier_id=?, item_id=?, price=?, quantity=?, memo=? WHERE id=?";
+			String sql = "UPDATE inventory SET supplier_id=?, item_id=?, price=?, quantity=?, memo=? WHERE id=?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setObject(1, inventory.getSupplierId(), Types.INTEGER);
 			stmt.setObject(2, inventory.getItemId(), Types.INTEGER);
@@ -125,7 +125,7 @@ public class InventoryDaoImpl implements InventoryDao {
 	public void delete(Inventory inventory) throws Exception {
 		int id = inventory.getId();
 		try(Connection con = ds.getConnection()){
-			String sql = "DELETE FROM inventory_item WHERE id=?";
+			String sql = "DELETE FROM inventory WHERE id=?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
