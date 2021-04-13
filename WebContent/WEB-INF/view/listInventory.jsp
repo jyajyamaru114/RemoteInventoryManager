@@ -6,11 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>在庫管理</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylseet" />
 </head>
 <body>
+<div class="container-fluid">
+<c:import url="parts/nav.jsp" />
 <h1>在庫一覧</h1>
 <p><a href="logout">ログアウト</a></p>
-<table border="1">
+<table class="table table-bordered table-striped">
   <tr>
     <th>ID</th>
     <th>仕入先名</th>
@@ -40,6 +45,10 @@
   </tr>
   </c:forEach>
 </table>
+</div>
+
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <p>
  <a href="addInventory">在庫の追加</a>
 </p>
