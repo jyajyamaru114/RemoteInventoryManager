@@ -37,6 +37,22 @@ public class InventoryDaoImpl implements InventoryDao {
 
 
 	@Override
+	public List<Inventory> findCount() throws Exception {
+		List<Inventory> inventoryCountList = new ArrayList<>();
+		try(Connection con = ds.getConnection()){
+			String sql = "SELECT item_id,sum(quantity) FROM inventory GROUP BY item_id" ;
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				inventoryCountList.add(mapToCount(rs));
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+		return inventoryCountList;
+	}
+
+	@Override
 	public List<Inventory> findDistinct1() throws Exception {
 		List<Inventory> inventoryDistinctList1 = new ArrayList<>();
 		try(Connection con = ds.getConnection()){
@@ -146,6 +162,14 @@ public class InventoryDaoImpl implements InventoryDao {
 		inventory.setMemo(rs.getString("memo"));
 		inventory.setCreated(rs.getTimestamp("created"));
 		inventory.setUpdate(rs.getTimestamp("update"));
+		return inventory;
+	}
+
+	private Inventory mapToCount(ResultSet rs) throws Exception{
+		Inventory inventory = new Inventory();
+		inventory.setItemId((Integer)rs.getObject("item_id"));
+		inventory.setSum(quantity)((Integer)rs.getObject("sum"));
+
 		return inventory;
 	}
 

@@ -14,19 +14,13 @@ import dao.InventoryDao;
 import domain.Inventory;
 
 /**
- * Servlet implementation class ListInventoryServlet
+ * Servlet implementation class ItemCountServlet
  */
-@WebServlet("/listInventory")
-public class ListInventoryServlet extends HttpServlet {
+@WebServlet("/ItemCountServlet")
+public class ItemCountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ListInventoryServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,14 +29,15 @@ public class ListInventoryServlet extends HttpServlet {
 		try {
 			InventoryDao inventoryDao = DaoFactory.createInventoryDao();
 			//Daoと繋ぐため（記述したデータベースとの接続や機能を使えるように）
-			List<Inventory> inventoryList = inventoryDao.findAll();
+			List<Inventory> inventoryCountList = inventoryDao.findCount();
 			//Listに情報を入れる。DaoImplのfindAll()の機能を使うため
-			request.setAttribute("inventoryList", inventoryList);
-			request.getRequestDispatcher("/WEB-INF/view/listInventory.jsp").forward(request, response);
+			request.setAttribute("inventoryCountList", inventoryCountList);
+			request.getRequestDispatcher("/WEB-INF/view/itemCount.jsp").forward(request, response);
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
