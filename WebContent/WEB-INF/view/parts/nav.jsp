@@ -10,7 +10,7 @@
  </button>
  <div class="collapse navbar-collapse" id="menu">
    <ul class="navbar-nav">
-    <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
+    <li class="nav-item active"><a class="nav-link" href="listInventory">Home</a></li>
     <li class="nav-item"><a class="nav-link" href="logout">ログアウト</a></li>
    </ul>
  </div>
