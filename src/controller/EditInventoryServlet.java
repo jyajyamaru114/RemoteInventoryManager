@@ -77,6 +77,7 @@ public class EditInventoryServlet extends HttpServlet {
 		}
 	}
 
+
 		Integer quantity = null;
 		String strQuantity = request.getParameter("quantity");
 		request.setAttribute("quantity", strQuantity);
@@ -89,6 +90,9 @@ public class EditInventoryServlet extends HttpServlet {
 		}
 	}
 
+		String memo = request.getParameter("memo");
+		request.setAttribute("memo", memo);
+
 
 		if(!isError) {
 
@@ -100,6 +104,7 @@ public class EditInventoryServlet extends HttpServlet {
 				inventory.setItemId(itemId);
 				inventory.setPrice(price);
 				inventory.setQuantity(quantity);
+				inventory.setMemo(memo);
 				inventoryDao.update(inventory);
 				request.getRequestDispatcher("/WEB-INF/view/editInventoryDone.jsp").forward(request, response);
 
