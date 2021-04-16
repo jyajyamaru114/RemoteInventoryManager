@@ -25,9 +25,9 @@
   <tr>
     <td><c:out value="${item.id }"/></td>
     <td><c:out value="${item.itemName }"/></td>
-    <td><a href="editItem?id=<c:out value="${suppliers.id }" />">編集</a>
+    <td><a href="editItem?id=<c:out value="${item.id }" />">編集</a>
     </td>
-    <td><a href="deleteItem?id=<c:out value="${suppliers.id }" />">削除</a>
+    <td><a href="deleteItem?id=<c:out value="${item.id }" />">削除</a>
     </td>
   </tr>
   </c:forEach>
