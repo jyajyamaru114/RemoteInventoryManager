@@ -1,5 +1,6 @@
 package domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Inventory {
@@ -23,6 +24,8 @@ public class Inventory {
 	private String supplierName;
 
 	private String itemName;
+
+	private BigDecimal countQuantity;
 
 	public Integer getId() {
 		return id;
@@ -111,6 +114,20 @@ public class Inventory {
 	public void setUpdate(Date update) {
 		this.update = update;
 	}
+
+	public BigDecimal getCountQuantity() {
+		return countQuantity;
+	}
+
+	public void setCountQuantity(BigDecimal countQuantity) {
+		this.countQuantity = countQuantity;
+	}
+
+
+
+
+
+
 
 
 

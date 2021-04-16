@@ -19,22 +19,24 @@
     <tr>
      <th>仕入先名</th>
      <td>
-     <c:if test="${not empty supplierIdError }">
-     <p><c:out value="※${supplierIdError }"/></p>
-     </c:if>
-     <input type="text" name="supplierId" value="<c:out value="${supplierId }"/>"/>
+      <select name="supplierId">
+       <c:forEach items="${inventoryDistinctList1 }" var="inventory">
+       <option value="${inventory.supplierId }"><c:out value="${inventory.supplierName }"/></option>
+       </c:forEach>
+      </select>
      </td>
-    </tr>
+   </tr>
 
-    <tr>
+   <tr>
      <th>在庫品名</th>
      <td>
-     <c:if test="${not empty itemIdError }">
-     <p><c:out value="※${itemIdError }"/></p>
-     </c:if>
-     <input type="text" name="itemId" value="<c:out value="${itemId }"/>"/>
+      <select name="itemId">
+       <c:forEach items="${inventoryDistinctList2 }" var="inventory">
+       <option value="${inventory.itemId }"><c:out value="${inventory.itemName }"/></option>
+       </c:forEach>
+      </select>
      </td>
-    </tr>
+   </tr>
 
     <tr>
      <th>価格</th>
@@ -43,7 +45,7 @@
      </td>
     </tr>
 
-    <tr>
+   <tr>
      <th>個数</th>
      <td>
      <input type="text" name="quantity" value="<c:out value="${quantity}"/>"/>

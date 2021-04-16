@@ -5,20 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>仕入先管理</title>
 </head>
 <body>
-<table border="1">
-<tr>
-  <th>在庫品ID</th>
-  <th>合計金額</th>
-</tr>
-<c:forEach items="${inventoryCountList}" var="count">
-<tr>
-  <td><c:out value="${count.itemId }"/></td>
-
-</tr>
-</c:forEach>
-</table>
+<h1>仕入先追加</h1>
+<p>保存しました。</p>
+<p>
+  <a href="listInventory">在庫一覧へ戻る</a>
+</p>
 </body>
 </html>

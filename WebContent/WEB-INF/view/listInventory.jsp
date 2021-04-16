@@ -46,8 +46,13 @@
 </table>
 
 <p>
+ <a href="suppliersInsert" class="btn btn-primary">新規仕入先名の登録</a>
+ <a href="itemInsert" class="btn btn-primary">新規在庫品名の登録</a>
+
  <a href="addInventory" class="btn btn-primary">在庫の追加</a>
+ <a href="inventoryCount" class="btn btn-primary">在庫の集計</a>
 </p>
+
 </div>
 <script src="js/jquery-2.2.4.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

@@ -1,5 +1,6 @@
 package dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,7 +41,7 @@ public class InventoryDaoImpl implements InventoryDao {
 	public List<Inventory> findCount() throws Exception {
 		List<Inventory> inventoryCountList = new ArrayList<>();
 		try(Connection con = ds.getConnection()){
-			String sql = "SELECT item_id,sum(quantity) FROM inventory GROUP BY item_id" ;
+			String sql = "SELECT item_name,sum(quantity), sum(quantity) AS countQuantity FROM inventory JOIN suppliers ON inventory.supplier_id = suppliers.id JOIN item ON inventory.item_id = item.id GROUP BY item_id;" ;
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
@@ -120,6 +121,32 @@ public class InventoryDaoImpl implements InventoryDao {
 	}
 
 	@Override
+	public void insertSplierName(Inventory inventory) throws Exception {
+		try (Connection con = ds.getConnection()){
+			String sql = "INSERT INTO suppliers(supplier_name)VALUES(?)";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, inventory.getSupplierName());
+			stmt.executeUpdate();
+		}catch (Exception e) {
+				throw e;
+			}
+		}
+
+	@Override
+	public void insertItemName(Inventory inventory) throws Exception {
+		try (Connection con = ds.getConnection()){
+			String sql = "INSERT INTO item(item_name)VALUES(?)";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, inventory.getItemName());
+			stmt.executeUpdate();
+		}catch (Exception e) {
+				throw e;
+			}
+		}
+
+
+
+	@Override
 	public void update(Inventory inventory) throws Exception {
 		try(Connection con = ds.getConnection()){
 			String sql = "UPDATE inventory SET supplier_id=?, item_id=?, price=?, quantity=?, memo=? WHERE id=?";
@@ -129,7 +156,7 @@ public class InventoryDaoImpl implements InventoryDao {
 			stmt.setObject(3, inventory.getPrice(), Types.INTEGER);
 			stmt.setObject(4, inventory.getQuantity(), Types.INTEGER);
 			stmt.setString(5, inventory.getMemo());
-			stmt.setInt(5, inventory.getId());
+			stmt.setInt(6, inventory.getId());
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			throw e;
@@ -167,8 +194,8 @@ public class InventoryDaoImpl implements InventoryDao {
 
 	private Inventory mapToCount(ResultSet rs) throws Exception{
 		Inventory inventory = new Inventory();
-		inventory.setItemId((Integer)rs.getObject("item_id"));
-		inventory.setSum(quantity)((Integer)rs.getObject("sum"));
+		inventory.setItemName(rs.getString("item_name"));
+		inventory.setCountQuantity((BigDecimal)rs.getObject("CountQuantity"));
 
 		return inventory;
 	}
@@ -186,5 +213,9 @@ public class InventoryDaoImpl implements InventoryDao {
 		inventory.setItemName(rs.getString("item_name"));
 		return inventory;
 	}
+
+
+
+
 
 }
