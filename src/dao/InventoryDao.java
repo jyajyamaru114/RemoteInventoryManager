@@ -16,15 +16,11 @@ public interface InventoryDao {
 
 	Inventory findById(Integer id) throws Exception;
 
-
 	void insert(Inventory inventory) throws Exception;
-
-	void insertSplierName(Inventory inventory) throws Exception;
-
-	void insertItemName(Inventory inventory) throws Exception;
 
 	void update(Inventory inventory) throws Exception;
 
 	void delete(Inventory inventory) throws Exception;
+
 
 }

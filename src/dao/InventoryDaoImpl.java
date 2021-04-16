@@ -104,6 +104,8 @@ public class InventoryDaoImpl implements InventoryDao {
 		return inventory;
 	}
 
+
+
 	@Override
 	public void insert(Inventory inventory) throws Exception {
 		try(Connection con = ds.getConnection()){
@@ -119,30 +121,6 @@ public class InventoryDaoImpl implements InventoryDao {
 			throw e;
 		}
 	}
-
-	@Override
-	public void insertSplierName(Inventory inventory) throws Exception {
-		try (Connection con = ds.getConnection()){
-			String sql = "INSERT INTO suppliers(supplier_name)VALUES(?)";
-			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setString(1, inventory.getSupplierName());
-			stmt.executeUpdate();
-		}catch (Exception e) {
-				throw e;
-			}
-		}
-
-	@Override
-	public void insertItemName(Inventory inventory) throws Exception {
-		try (Connection con = ds.getConnection()){
-			String sql = "INSERT INTO item(item_name)VALUES(?)";
-			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setString(1, inventory.getItemName());
-			stmt.executeUpdate();
-		}catch (Exception e) {
-				throw e;
-			}
-		}
 
 
 
@@ -177,6 +155,9 @@ public class InventoryDaoImpl implements InventoryDao {
 		}
 
 	}
+
+
+
 	private Inventory mapToInventory(ResultSet rs) throws Exception{
 		Inventory inventory = new Inventory();
 		inventory.setId((Integer)rs.getObject("id"));
@@ -213,6 +194,10 @@ public class InventoryDaoImpl implements InventoryDao {
 		inventory.setItemName(rs.getString("item_name"));
 		return inventory;
 	}
+
+
+
+
 
 
 

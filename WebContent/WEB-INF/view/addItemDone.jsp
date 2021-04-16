@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>仕入先管理</title>
+<title>在庫品名管理</title>
 </head>
 <body>
-<h1>仕入先追加</h1>
+<h1>新規在庫品追加</h1>
 <p>保存しました。</p>
 <p>
-  <a href="listInventory">在庫一覧へ戻る</a>
+  <a href="listItem">仕入先一覧へ戻る</a>
 </p>
 </body>
 </html>

@@ -10,7 +10,9 @@
  </button>
  <div class="collapse navbar-collapse" id="menu">
    <ul class="navbar-nav">
-    <li class="nav-item active"><a class="nav-link" href="listInventory">Home</a></li>
+    <li class="nav-item active"><a class="nav-link" href="listInventory">在庫一覧</a></li>
+    <li class="nav-item active"><a class="nav-link" href="listSuppliers">仕入先名一覧</a></li>
+    <li class="nav-item active"><a class="nav-link" href="listItem">在庫名一覧</a></li>
     <li class="nav-item"><a class="nav-link" href="logout">ログアウト</a></li>
    </ul>
  </div>

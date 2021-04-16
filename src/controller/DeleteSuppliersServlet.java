@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DaoFactory;
-import dao.InventoryDao;
-import domain.Inventory;
+import dao.SuppliersDao;
+import domain.Suppliers;
 
 /**
- * Servlet implementation class SuppliersInsertServlet
+ * Servlet implementation class DeleteSuppliersServlet
  */
-@WebServlet("/suppliersInsert")
-public class SuppliersInsertServlet extends HttpServlet {
+@WebServlet("/deleteSuppliers")
+public class DeleteSuppliersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SuppliersInsertServlet() {
+    public DeleteSuppliersServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,25 +31,24 @@ public class SuppliersInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/suppliersInsert.jsp").forward(request, response);
-		 }
+		try {
+			String strId = request.getParameter("id");
+			Suppliers suppliers = new Suppliers();
+			suppliers.setId(Integer.parseInt(strId));
+			SuppliersDao suppliersDao = DaoFactory.createSuppliersDao();
+			suppliersDao.delete(suppliers);
+			request.getRequestDispatcher("/WEB-INF/view/deleteSuppliersDone.jsp").forward(request, response);
+		} catch(Exception e) {
+			throw new ServletException(e);
+		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String supplierName = request.getParameter("supplierName");
-		Inventory inventory = new Inventory();	
-		inventory.setSupplierName(supplierName);
-		try {
-			InventoryDao inventoryDao = DaoFactory.createInventoryDao();
-			inventoryDao.insertSplierName(inventory);
-			request.getRequestDispatcher("/WEB-INF/view/suppliersInsertDone.jsp").forward(request, response);
-		} catch (Exception e) {
-			throw new ServletException(e);
-		}
-
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
