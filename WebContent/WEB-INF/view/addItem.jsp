@@ -16,6 +16,7 @@
 <c:import url="parts/nav.jsp" />
 <h1>新規在庫品名追加</h1>
 <form action="" method="post">
+<!-- action=""自分に送信 つまりこのJSPを呼び出したAddItemServletに送信 -->
 <table border="1">
 
 

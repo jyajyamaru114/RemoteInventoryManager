@@ -18,7 +18,7 @@ public class ItemDaoImpl implements ItemDao {
 		this.ds = ds;
 	}
 
-	@Override
+	@Override//findAll()が呼ばれたら、配列List<item>〇〇に指定したデータベースからデータが入る
 	public List<Item> findAll() throws Exception {
 		List<Item> itemList = new ArrayList<>();
 		try(Connection con = ds.getConnection()){
