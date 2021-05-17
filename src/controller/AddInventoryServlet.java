@@ -31,8 +31,12 @@ public class AddInventoryServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    //2つのクラスから引数としてインスタンスを受け取っている？
+    //サーブレットはコンテナが自動的にインスタンス化を行ってくれる
+    //コンテナがリクエスト情報が詰まったrequestを引数として渡してくれいる
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+//DaoFactoryからデータベースとの接続
+//inventoryDaoからfindDistinct1と2の機能を使って処理したデータをフォワード
 		try {
 			InventoryDao inventoryDao = DaoFactory.createInventoryDao();
 
@@ -40,6 +44,7 @@ public class AddInventoryServlet extends HttpServlet {
 			List<Inventory> inventoryDistinctList2 = inventoryDao.findDistinct2();
 			request.setAttribute("inventoryDistinctList1", inventoryDistinctList1);
 			request.setAttribute("inventoryDistinctList2", inventoryDistinctList2);
+//データベースからデータの読み込み（addInventory.jspフォームの選択肢表示用）
 		    request.getRequestDispatcher("/WEB-INF/view/addInventory.jsp").forward(request, response);
 	}
 		catch (Exception e) {
@@ -47,8 +52,8 @@ public class AddInventoryServlet extends HttpServlet {
 		}
 }
 	//listInventory.jspからdoGet
-	//doGetからaddInventory.jsp
-	//addminInventory.jspで値を入力してdoPostへ
+	//doGetからaddInventory.jspにフォーワード
+	//addminInventory.jspで値を入力しこれを付加してdoPostへ
 	//doPostからaddInventoryDone.jspへ
 
 	/**
@@ -56,7 +61,7 @@ public class AddInventoryServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+//文字列として受けた値をラッパークラスのparseIntメソッドを使ってint型の値へ変換
 		Integer supplierId = Integer.parseInt(request.getParameter("supplierId"));
 
 

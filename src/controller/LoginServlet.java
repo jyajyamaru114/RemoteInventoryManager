@@ -46,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 			Admin admin = adminDao.findByLoginIdAndLoginPass(loginId, loginPass);
 			if(admin != null) {
 				request.getSession().setAttribute("loginId", admin.getLoginId());
+//Sessionのデータ(ログイン情報)を取得してsetAttriubteでrequestスコープに格納？
 				response.sendRedirect("listInventory");
 				//エラーメッセージ表示のため
 			} else {

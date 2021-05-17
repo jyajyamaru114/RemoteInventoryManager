@@ -23,6 +23,7 @@ public class InventoryDaoImpl implements InventoryDao {
 	@Override
 	public List<Inventory> findAll() throws Exception {
 		List<Inventory> inventoryList = new ArrayList<>();
+		//Inventoryクラス型のデータを格納するList
 		try(Connection con = ds.getConnection()){
 			String sql = "SELECT DISTINCT * FROM inventory JOIN suppliers ON inventory.supplier_id = suppliers.id JOIN item ON inventory.item_id = item.id ORDER BY inventory.id ASC";
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -66,6 +67,11 @@ public class InventoryDaoImpl implements InventoryDao {
 		}   catch (Exception e) {
 			throw e;
 		}
+//在庫の追加機能フォームで、仕入先名と在庫品名の入力を簡略化する
+//仕入先名を表示させるためにsql文でidとnameの重複表示を禁止し、
+//idのカラム名をテーブル名suppliersではなくinventory（追加して表示するテーブル）のsupplier_nameに変更
+//idとnameの2つを指定する訳はフォームの選択肢で、idを基にnameを表示したいため
+
 
 	 return inventoryDistinctList1;
 	}
@@ -160,6 +166,7 @@ public class InventoryDaoImpl implements InventoryDao {
 
 	private Inventory mapToInventory(ResultSet rs) throws Exception{
 		Inventory inventory = new Inventory();
+		//Inventory型変数inventoryを定義 この変数にInventoryクラスのインスタンスを格納
 		inventory.setId((Integer)rs.getObject("id"));
 		inventory.setSupplierId((Integer)rs.getObject("supplier_id"));
 		inventory.setItemId((Integer)rs.getObject("item_id"));
@@ -187,6 +194,7 @@ public class InventoryDaoImpl implements InventoryDao {
 		inventory.setSupplierName(rs.getString("supplier_name"));
 		return inventory;
 	}
+
 
 	private Inventory mapToDistinct2(ResultSet rs) throws Exception{
 		Inventory inventory = new Inventory();

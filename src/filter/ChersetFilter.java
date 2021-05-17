@@ -36,6 +36,7 @@ public class ChersetFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		//サーブレットでの文字コードの設定
 
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
