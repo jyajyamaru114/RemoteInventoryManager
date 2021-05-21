@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath}/css/style.css" rel="stylseet" />
-
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" />
 <title>仕入先追加</title>
 </head>
 <body>
