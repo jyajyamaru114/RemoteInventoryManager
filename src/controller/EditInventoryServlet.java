@@ -36,12 +36,13 @@ public class EditInventoryServlet extends HttpServlet {
 			String strId = request.getParameter("id");
 			Integer id = Integer.parseInt(strId);
 			InventoryDao inventoryDao = DaoFactory.createInventoryDao();
-			List<Inventory> inventoryList = inventoryDao.findAll();
+			//List<Inventory> inventoryList = inventoryDao.findAll();
 			List<Inventory> inventoryDistinctList1 = inventoryDao.findDistinct1();
 			List<Inventory> inventoryDistinctList2 = inventoryDao.findDistinct2();
-			request.setAttribute("inventoryList", inventoryList);
+			//request.setAttribute("inventoryList", inventoryList);
 			request.setAttribute("inventoryDistinctList1", inventoryDistinctList1);
 			request.setAttribute("inventoryDistinctList2", inventoryDistinctList2);
+			
 			Inventory inventory = inventoryDao.findById(id);
 			request.setAttribute("supplierId", inventory.getSupplierId());
 			request.setAttribute("itemId", inventory.getItemId());

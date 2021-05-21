@@ -98,6 +98,7 @@ public class InventoryDaoImpl implements InventoryDao {
 		Inventory inventory = null;
 		try(Connection con = ds.getConnection()){
 			String sql = "SELECT * FROM inventory JOIN suppliers ON inventory.supplier_id = suppliers.id JOIN item ON inventory.item_id = item.id WHERE inventory.id = ?";
+			//指定したidを持つデータを参照
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
@@ -134,6 +135,7 @@ public class InventoryDaoImpl implements InventoryDao {
 	public void update(Inventory inventory) throws Exception {
 		try(Connection con = ds.getConnection()){
 			String sql = "UPDATE inventory SET supplier_id=?, item_id=?, price=?, quantity=?, memo=? WHERE id=?";
+			//指定したidを持つレコードの選択したカラムを更新するための記述
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setObject(1, inventory.getSupplierId(), Types.INTEGER);
 			stmt.setObject(2, inventory.getItemId(), Types.INTEGER);
@@ -141,7 +143,9 @@ public class InventoryDaoImpl implements InventoryDao {
 			stmt.setObject(4, inventory.getQuantity(), Types.INTEGER);
 			stmt.setString(5, inventory.getMemo());
 			stmt.setInt(6, inventory.getId());
-			stmt.executeUpdate();
+			//sql文で指定したデータの中に合致するidがあればそのデータを取得
+			//変更したい部分を変えてデータベースの更新を行う。
+			stmt.executeUpdate();//sql文の実行
 		} catch (Exception e) {
 			throw e;
 		}
@@ -178,7 +182,7 @@ public class InventoryDaoImpl implements InventoryDao {
 		inventory.setCreated(rs.getTimestamp("created"));
 		inventory.setUpdate(rs.getTimestamp("update"));
 		return inventory;
-	}
+	}//sql文で取得したデータを、処理で使いたい形に作り替えている
 
 	private Inventory mapToCount(ResultSet rs) throws Exception{
 		Inventory inventory = new Inventory();
