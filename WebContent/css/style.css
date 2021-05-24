@@ -1,7 +1,37 @@
 @CHARSET "UTF-8";
 
-body {
- padding-top: 70px;
+html {
+	font-size: 100%;
+
+}
+
+.main-nav{
+	display: flex;
+	font-size: 1.25rem;
+	text-transform: uppercase;
+	margin-top: 34px;
+	list-style: none;
+}
+
+.main-nav{
+	margin-left: 36px;
+}
+
+.item{
+	margin: 10px;
+    padding: 10px;
+}
+
+.page-header{
+	display: flex;
+	justify-content: space-between;
+	
+}
+
+.container-fluid{
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 0.4%;
 }
 
 
