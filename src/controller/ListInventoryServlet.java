@@ -34,9 +34,9 @@ public class ListInventoryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			InventoryDao inventoryDao = DaoFactory.createInventoryDao();
-			//Daoと繋ぐため（記述したデータベースとの接続や機能を使えるように）
+			
 			List<Inventory> inventoryList = inventoryDao.findAll();
-			//Listに情報を入れる。DaoImplのfindAll()の機能を使うため
+			
 			request.setAttribute("inventoryList", inventoryList);
 			request.getRequestDispatcher("/WEB-INF/view/listInventory.jsp").forward(request, response);
 		} catch (Exception e) {

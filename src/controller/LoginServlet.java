@@ -42,13 +42,13 @@ public class LoginServlet extends HttpServlet {
 			String loginPass = request.getParameter("loginPass");
 			AdminDao adminDao = DaoFactory.createAdminDao();
 
-			//ここからの記述の意味を復習する
+
 			Admin admin = adminDao.findByLoginIdAndLoginPass(loginId, loginPass);
 			if(admin != null) {
 				request.getSession().setAttribute("loginId", admin.getLoginId());
-//Sessionのデータ(ログイン情報)を取得してsetAttriubteでrequestスコープに格納？
+
 				response.sendRedirect("listInventory");
-				//エラーメッセージ表示のため
+
 			} else {
 				request.setAttribute("error", true);
 				request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);

@@ -14,7 +14,7 @@
 <div class="container-fluid">
 <c:import url="parts/nav.jsp" />
 <h1>在庫追加</h1>
-<!-- WebクライアントがPOSTでリクエストを送信 -->
+
 <form action="" method="post">
 <table border="1">
     <tr>
@@ -27,8 +27,6 @@
       </select>
      </td>
    </tr>
-<!-- forEachを利用してデータベースのsupplierNameをすべて表示したい -->
-<!-- inventoryDistinctList1オブジェクトを使用してIdを基にNameを表示 -->
 
    <tr>
      <th>在庫品名</th>

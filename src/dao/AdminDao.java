@@ -11,7 +11,7 @@ public interface AdminDao {
 	Admin findById(Integer id) throws Exception;
 
 	void insert(Admin admin) throws Exception;
-	//戻り値の型 メソッド名（引数） 例外を投げる
+
 
 	void update(Admin admin) throws Exception;
 
